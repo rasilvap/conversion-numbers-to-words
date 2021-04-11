@@ -7,8 +7,4 @@ public class NumbersToWordsException extends Exception {
 	public NumbersToWordsException(String msg) {
 		super(msg);
 	}
-
-	public NumbersToWordsException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
 }
