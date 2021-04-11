@@ -1,4 +1,4 @@
-package com.numbers.conversion.dto;
+package com.numbers.conversion.model.dto;
 
 import lombok.Getter;
 
