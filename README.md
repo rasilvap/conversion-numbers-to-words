@@ -33,7 +33,7 @@ To run it locally you must follow these three steps:
 
 In the terminal, located in the root directory (conversion-numbers-to-words) run ```mvn clean install```
 
-In the same directory, run the command ```docker build -t numbers-conversion-to-words:1.0 . .``` to create the APP image.
+In the same directory, run the command ```docker build -t numbers-conversion-to-words:1.0 .``` to create the APP image.
 
 Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-conversion-to-words:1.0``` to run the app in local in the 8080 port.
 
