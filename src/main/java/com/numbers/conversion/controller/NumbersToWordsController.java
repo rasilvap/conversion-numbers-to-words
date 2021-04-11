@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * NumbersToWordsController receives a input number from outside and calls the  numbersToWordsService
+ * to start its conversion to English numbers.
+ */
 @RestController
 public class NumbersToWordsController {
 
@@ -27,8 +31,9 @@ public class NumbersToWordsController {
 
 	/**
 	 * Endpoint to convert a number to words
-	 * @param numberDTO
-	 * @return 200 ok if the number was converted to letters, otherwise 400 bad request.
+	 * @param numberDTO the input number from outside.
+	 * @return 200 ok if the number was converted to letters, otherwise 400 bad request, if the number
+	 * exceed the allowed value (999999999999L).
 	 */
 	@RequestMapping(value = NUMBERS, method = RequestMethod.POST)
 	public ResponseEntity numbers(@RequestBody NumberDTO numberDTO) {

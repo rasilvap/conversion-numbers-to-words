@@ -10,10 +10,17 @@ import java.util.Objects;
 @Getter
 public class NumberDTO {
 
+    /**
+     * NumberDTO class constructor with params.
+     * @param number
+     */
     public NumberDTO(long number) {
         this.number = number;
     }
 
+    /**
+     * NumberDTO class constructor with empty params.
+     */
     public NumberDTO(){}
 
     private long number;
