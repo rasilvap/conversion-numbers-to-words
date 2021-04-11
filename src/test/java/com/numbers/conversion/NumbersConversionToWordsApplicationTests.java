@@ -10,4 +10,14 @@ class NumbersConversionToWordsApplicationTests {
 	void contextLoads() {
 	}
 
+
+	@Test
+	public void applicationContextLoaded() {
+	}
+
+	@Test
+	public void applicationContextTest() {
+		NumbersConversionToWordsApplication.main(new String[] {});
+	}
+
 }
