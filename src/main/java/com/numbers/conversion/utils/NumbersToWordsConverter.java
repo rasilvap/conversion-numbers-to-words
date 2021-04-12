@@ -4,6 +4,7 @@ import com.numbers.conversion.exception.NumbersToWordsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static com.numbers.conversion.utils.Constants.*;
+import static com.numbers.conversion.utils.WordsConversion.capitalizeFinalString;
 
 /**
  * NumbersToWordsConverter is the utility class which convert the input number to is equivalent in words.
@@ -21,7 +22,7 @@ public class NumbersToWordsConverter {
      */
     public static String convertNumberToWords(final long number) throws NumbersToWordsException {
         logger.info("Starting number transformation to words with input number: {}", number);
-        return capitalize(new NumbersToWordsConverter(number).convertNumberToWords());
+        return capitalizeFinalString(new NumbersToWordsConverter(number).convertNumberToWords());
     }
 
     /**
@@ -134,6 +135,7 @@ public class NumbersToWordsConverter {
 
     /**
      * This method append the new word number with an and space separator.
+     * @param words the current accumulated of words converted from the number.
      */
     private void appendWithAnd(final String words) {
         appendWithSeparator(words, AND_SEPARATOR);
@@ -157,7 +159,7 @@ public class NumbersToWordsConverter {
      * @return
      */
     private String convertTensAndUnits(final int number) {
-        logger.info("Tens and Units: {}", number);
+        logger.info("Tens and Units to be converted: {}", number);
         final int tens = number / 10;
         final int units = number - tens * 10;
 
@@ -166,21 +168,9 @@ public class NumbersToWordsConverter {
         } else if (units == 0) {
             return MULTIPLES_OF_10[tens];
         } else {
-            return MULTIPLES_OF_10[tens] + " " + NUMBERS_UP_TO_19[units];
+            return MULTIPLES_OF_10[tens] + SEPARATOR + NUMBERS_UP_TO_19[units];
         }
     }
 
-    /**
-     * Capitalize the final words converted from the input number. Just the initial word.
-     * @param str
-     * @return
-     */
-    private static String capitalize(String str) {
-        if(str == null || str.isEmpty()) {
-            return str;
-        }
-        String capitalizedWordsNumber = str.substring(0, 1).toUpperCase() + str.substring(1);
-        logger.info("Ending program with capitalized number to words: {}", capitalizedWordsNumber);
-        return capitalizedWordsNumber;
-    }
+
 }
