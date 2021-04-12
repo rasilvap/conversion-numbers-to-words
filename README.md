@@ -33,10 +33,19 @@ To run it locally you must follow these three steps:
 
 In the terminal, located in the root directory (conversion-numbers-to-words) run ```mvn clean install```
 
+Make sure that the .jar file was generated in the target directory:
+
+<img src = "src/main/resources/images/jarGenerated.png" />
+
+
 In the same directory, run the command ```docker build -t numbers-conversion-to-words:1.0 .``` to create the APP image.
+
+Make sure that the image was created with the ```docker images`` command: 
+
+<img src = "src/main/resources/images/DockerImage.png" />
 
 Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-conversion-to-words:1.0``` to run the app in local in the 8080 port.
 
 Postman Collection 📢
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d886ee82d889744b766a)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/34cd02999866616572f7)
