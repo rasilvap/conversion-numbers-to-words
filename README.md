@@ -72,7 +72,9 @@ Make sure that the image was created with the ```docker images``` command:
 
 Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-conversion-to-words:1.0``` to run the app in local in the 8080 port.
 
-## Swagger url in local: http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
+## Swagger url in local:
+
+http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
 ## Postman Collection 
 
