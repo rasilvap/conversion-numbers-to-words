@@ -25,7 +25,7 @@ This application converts a input number to its equivalent in English words.
 
 ##  Classes Diagram
 
-##  How the algorithem Works
+##  How the algorithm Works
 
 1) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and en each division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, Calculate the remainder number. 12417 % 1000 = 417 with have 1 in the thousands variable and 10 as remainder this ten will be the next input in the sequence to be converted.
 
@@ -41,7 +41,7 @@ This application converts a input number to its equivalent in English words.
 
 Finally, the function capitalizeWords formmats the final input and  will return “Twelve thousand four hundred and seventeen”.
 
-The following image illustrates the above algorithm:
+<img src = "src/main/resources/images/Algorithm.png" />
 
 
 
