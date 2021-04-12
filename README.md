@@ -25,8 +25,26 @@ This application converts a input number to its equivalent in English words.
 
 ##  Classes Diagram
 
+##  How the algorithem Works
 
-# Run the API Locally 🚀
+a) First Find the highest unit by which we can divide our given number. For 11561, height unit is thousand (1000)
+b) Divide the number with the selected unit, so we will get 11. 11 is already mapped, so return ‘Eleven’
+c) Calculate the remainder number. 11516 % 1000 = 516
+d) Find the next highest unit for 516, we will get Hundred.
+e) Divide 516 by Hundred (516/100 = 5), the result is 5. 5 is found on our map. So, return “Five”.
+f) Again, calculate the remainder number. 516 % 100 = 16
+g) 16 already mapped to ‘Sixteen’, so return “Sixteen”.
+
+Finally, the function will return “Eleven Thousand Five Hundred Sixty One”
+
+The following image illustrates the above algorithm
+
+##  Code coverage results:
+
+<img src = "src/main/resources/images/coverageDiagram.png" />
+
+
+# Run the API Locally
 
 
 To run it locally you must follow these three steps:
