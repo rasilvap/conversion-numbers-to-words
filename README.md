@@ -27,17 +27,18 @@ This application converts a input number to its equivalent in English words.
 
 ##  How the algorithem Works
 
-a) First Find the highest unit by which we can divide our given number. For 11561, height unit is thousand (1000)
-b) Divide the number with the selected unit, so we will get 11. 11 is already mapped, so return ‘Eleven’
-c) Calculate the remainder number. 11516 % 1000 = 516
-d) Find the next highest unit for 516, we will get Hundred.
-e) Divide 516 by Hundred (516/100 = 5), the result is 5. 5 is found on our map. So, return “Five”.
-f) Again, calculate the remainder number. 516 % 100 = 16
-g) 16 already mapped to ‘Sixteen’, so return “Sixteen”.
+a) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and en each division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, Calculate the remainder number. 12417 % 1000 = 417 with have 1 in the thousands variable and 10 as remainder this ten will be the next input in the sequence to be converted.
+b) If the number has billions then the number global variable will be initialized with the billions number and the program will go again to the convertNumberToWords method to get the word equivalent number just for the billion part, otherwise if there is not billion part the program continues witn the next number in the sequence in this case million and so far and so for.
+d) Find the next highest unit for 417, we will get Hundred.
+e) Divide 417 by Hundred (417/100 = 4), the result is 4. 4 is found on NUMBERS_UP_TO_19 array. So, return “four”, in this case.
+f) Again, calculate the remainder number. 417 % 100 = 17
+g) 17 is mapped to ‘Seventeen’, in the convertTensAndUnits method which separates tens and units and maps the number according to the implicit logic in this method. After hundred or thousand when they're alone and after hundred when they're together, is gonna be append and and word to the words.
 
-Finally, the function will return “Eleven Thousand Five Hundred Sixty One”
+Finally, the function capitalizeWords formmats the final input and  will return “Twelve thousand four hundred and seventeen”.
 
-The following image illustrates the above algorithm
+The following image illustrates the above algorithm:
+
+
 
 ##  Code coverage results:
 
