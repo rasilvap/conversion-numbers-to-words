@@ -26,7 +26,7 @@ public class NumbersToWordsConverter {
     }
 
     /**
-     * This method set the current number to be converted to the global number variable.
+     * This constructor set the current number to be converted to the global number variable.
      */
     private NumbersToWordsConverter(final long number) {
         logger.info("Number to be converted to words: {}", number);
