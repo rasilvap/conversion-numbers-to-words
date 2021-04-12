@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NumbersToWordsController {
 
-	public static final String NUMBERS = "/numbers";
+	public static final String NUMBERS = "/numbers-words";
 	private final NumbersToWordsService numbersToWordsService;
 	static Logger logger = LogManager.getLogger(NumbersToWordsController.class);
 
@@ -36,7 +36,7 @@ public class NumbersToWordsController {
 	 * exceed the allowed value (999999999999L).
 	 */
 	@RequestMapping(value = NUMBERS, method = RequestMethod.POST)
-	public ResponseEntity numbers(@RequestBody NumberDTO numberDTO) {
+	public ResponseEntity numbersWords(@RequestBody NumberDTO numberDTO) {
 		logger.info("Starting program with Input request Params: {}", numberDTO.toString());
 		try {
 			return ResponseEntity

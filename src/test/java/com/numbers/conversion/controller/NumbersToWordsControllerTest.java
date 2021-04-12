@@ -36,9 +36,9 @@ class NumbersToWordsControllerTest {
     }
 
     @Test
-    public void testMutantEndpointForbiddens() throws Exception {
+    public void testNumbersToWordsEndpoint_ok_thenReturnOkStatus() throws Exception {
         when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenReturn("Eighty nine");
-        mockMvc.perform(post("/numbers")
+        mockMvc.perform(post("/numbers-words")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "    \"number\" : 89\n" +
@@ -48,10 +48,10 @@ class NumbersToWordsControllerTest {
     }
 
     @Test
-    public void testMutantEndpointForbiddensa() throws Exception {
+    public void testNumbersToWordsEndpoint_numberNotAllowed_thenReturnBadRequest() throws Exception {
         when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenThrow(NumbersToWordsException.class);
 
-        mockMvc.perform(post("/numbers")
+        mockMvc.perform(post("/numbers-words")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "    \"number\" : 99999999999999\n" +
