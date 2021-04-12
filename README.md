@@ -25,7 +25,7 @@ This application converts a input number to its equivalent in English words.
 
 ##  Classes Diagram
 
-<img src = "src/main/resources/images/classDiagram.jpg" />
+<img src = "src/main/resources/images/classDiagram.png" />
 
 ##  How the algorithm Works
 
