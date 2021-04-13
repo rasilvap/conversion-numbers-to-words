@@ -2,7 +2,6 @@ package com.numbers.conversion.utils;
 
 import com.numbers.conversion.exception.NumbersToWordsException;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumbersToWordsConverterTest {
@@ -133,36 +132,66 @@ class NumbersToWordsConverterTest {
 
     @Test
     public void convertNumbersOfNineDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(987654321, "Nine hundred and eighty seven million six hundred and fifty four thousand three hundred and twenty one");
+        expectConversion(987654321, "Nine hundred and eighty seven million six hundred and fifty four " +
+                "thousand three hundred and twenty one");
         expectConversion(111111001, "One hundred and eleven million one hundred and eleven thousand and one");
     }
 
     @Test
     public void convertNumbersOfTenDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(9876543210L, "Nine billion eight hundred and seventy six million five hundred and forty three thousand two hundred and ten");
+        expectConversion(9876543210L, "Nine billion eight hundred and seventy six million five hundred " +
+                "and forty three thousand two hundred and ten");
         expectConversion(1111110001, "One billion one hundred and eleven million one hundred and ten thousand and one");
     }
 
     @Test
     public void convertNumbersOfElevenDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(98765432101L, "Ninety eight billion seven hundred and sixty five million four hundred and thirty two thousand one hundred and one");
-        expectConversion(99999999999L, "Ninety nine billion nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine");
+        expectConversion(98765432101L, "Ninety eight billion seven hundred and sixty five million four hundred and " +
+                "thirty two thousand one hundred and one");
+        expectConversion(99999999999L, "Ninety nine billion nine hundred and ninety nine million nine hundred and " +
+                "ninety nine thousand nine hundred and ninety nine");
     }
 
     @Test
     public void convertNumbersOfTwelveDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(987654321012L, "Nine hundred and eighty seven billion six hundred and fifty four million three hundred and twenty one thousand and twelve");
-        expectConversion(999999999999L, "Nine hundred and ninety nine billion nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine");
+        expectConversion(987654321012L, "Nine hundred and eighty seven billion six hundred and fifty four " +
+                "million three hundred and twenty one thousand and twelve");
+        expectConversion(999999999999L, "Nine hundred and ninety nine billion nine hundred " +
+                "and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine");
+
+    }
+
+
+    @Test
+    public void convertNumbersOfThirteenFourteenFifteenSixteenSeventeenEighteen_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
+        expectConversion(9876543210123L, "Nine trillion eight hundred and seventy six billion five hundred and " +
+                "forty three million two hundred and ten thousand one hundred and twenty three");
+        expectConversion(99999999999999L, "Ninety nine trillion nine hundred and ninety nine billion nine hundred " +
+                "and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine");
+        expectConversion(289898989893279L, "Two hundred and eighty nine trillion eight hundred and ninety eight " +
+                "billion nine hundred and eighty nine million eight hundred and ninety three thousand two hundred and seventy nine");
+        expectConversion(7876543290812745L, "Seven quadrillion eight hundred and seventy six trillion five hundred " +
+                "and forty three billion two hundred and ninety million eight hundred and twelve thousand seven hundred and forty five");
+        expectConversion(69787563567898761L, "Sixty nine quadrillion seven hundred and eighty seven trillion five " +
+                "hundred and sixty three billion five hundred and sixty seven million eight hundred and ninety eight thousand seven hundred and sixty one");
+        expectConversion(909876541345678901L, "Nine hundred and nine quadrillion eight hundred and seventy six trillion " +
+                "five hundred and forty one billion three hundred and forty five million six hundred and seventy eight thousand nine hundred and one");
 
     }
 
     @Test
-    public void convertNumbersHigherThan999999999999L_Error_ExpectedNumbersToWordsException() {
-        NumbersToWordsException thrown = assertThrows(
-                NumbersToWordsException.class,
-                () -> expectConversion(9876543210123L, "no answer")
-        );
-        assertTrue(thrown.getMessage().contains("Number exceed allowed value."));
+    public void convertNegativeNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
+        expectConversion(-9876543210123L, "Negative nine trillion eight hundred and seventy six billion five hundred and forty three million two" +
+                " hundred and ten thousand one hundred and twenty three");
+        expectConversion(-101, "Negative one hundred and one");
+        expectConversion(-800, "Negative eight hundred");
+        expectConversion(-6666656, "Negative six million six hundred and sixty six thousand six hundred and fifty six");
+    }
+
+    @Test
+    public void convertNegativeFollowedByPositiveNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
+        expectConversion(-88763, "Negative eighty eight thousand seven hundred and sixty three");
+        expectConversion(100000000, "One hundred million");
     }
 
     private void expectConversion(final long number, final String expectedWords) throws NumbersToWordsException {
