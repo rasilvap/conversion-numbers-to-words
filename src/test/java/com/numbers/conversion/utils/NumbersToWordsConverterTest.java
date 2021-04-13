@@ -161,7 +161,6 @@ class NumbersToWordsConverterTest {
 
     }
 
-
     @Test
     public void convertNumbersOfThirteenFourteenFifteenSixteenSeventeenEighteen_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
         expectConversion(9876543210123L, "Nine trillion eight hundred and seventy six billion five hundred and " +
@@ -176,7 +175,6 @@ class NumbersToWordsConverterTest {
                 "hundred and sixty three billion five hundred and sixty seven million eight hundred and ninety eight thousand seven hundred and sixty one");
         expectConversion(909876541345678901L, "Nine hundred and nine quadrillion eight hundred and seventy six trillion " +
                 "five hundred and forty one billion three hundred and forty five million six hundred and seventy eight thousand nine hundred and one");
-
     }
 
     @Test
