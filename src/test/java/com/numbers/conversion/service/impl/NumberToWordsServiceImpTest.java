@@ -19,20 +19,9 @@ class NumberToWordsServiceImpTest {
     }
 
     @Test
-    public void testIsMuntantFalse() throws NumbersToWordsException {
-        NumberDTO numberDTO = new NumberDTO(879);
+    public void testNumberIsAllowedValue_ok_returnNumbersToWords() throws NumbersToWordsException {
+        NumberDTO numberDTO = new NumberDTO(879L);
 
         assertEquals(service.convertNumbersToEnglishWords(numberDTO),"Eight hundred and seventy nine");
-    }
-
-    @Test
-    public void testIsMuntantFalseq() throws NumbersToWordsException {
-        NumberDTO numberDTO = new NumberDTO(9999999999999L);
-
-        NumbersToWordsException thrown = assertThrows(
-                NumbersToWordsException.class,
-                () -> service.convertNumbersToEnglishWords(numberDTO)
-        );
-        assertTrue(thrown.getMessage().contains("Number exceed allowed value."));
     }
 }
