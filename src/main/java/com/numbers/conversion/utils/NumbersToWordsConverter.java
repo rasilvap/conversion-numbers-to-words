@@ -4,15 +4,16 @@ import com.numbers.conversion.exception.NumbersToWordsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static com.numbers.conversion.utils.Constants.*;
-import static com.numbers.conversion.utils.WordsConversion.capitalizeFinalString;
+import static com.numbers.conversion.utils.WordsConversion.capitalizeAndFormatFinalString;
 
 /**
  * NumbersToWordsConverter is the utility class which convert the input number to is equivalent in words.
  */
 public class NumbersToWordsConverter {
-    private final long number;
+    private final Long number;
     private StringBuffer result = new StringBuffer();
     static Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
+    static boolean isNegativeNumber;
 
     /**
      *
@@ -20,17 +21,18 @@ public class NumbersToWordsConverter {
      * @return the input number in its equivalent English words.
      * @throws NumbersToWordsException
      */
-    public static String convertNumberToWords(final long number) throws NumbersToWordsException {
+    public static String convertNumberToWords(final Long number) throws NumbersToWordsException {
+        isNegativeNumber = (number < 0) ? true : false;
         logger.info("Starting number transformation to words with input number: {}", number);
-        return capitalizeFinalString(new NumbersToWordsConverter(number).convertNumberToWords());
+        return capitalizeAndFormatFinalString(new NumbersToWordsConverter(number).convertNumberToWords(), isNegativeNumber);
     }
 
     /**
      * This constructor set the current number to be converted to the global number variable.
      */
-    private NumbersToWordsConverter(final long number) {
+    private NumbersToWordsConverter(final Long number) {
         logger.info("Number to be converted to words: {}", number);
-        this.number = number;
+        this.number = Math.abs(number);
     }
 
     /**
@@ -40,27 +42,73 @@ public class NumbersToWordsConverter {
      * @throws NumbersToWordsException
      */
     private String convertNumberToWords() throws NumbersToWordsException {
-        if (number > MAXIMUM_VALUE_ALLOWED) {
-            logger.error("The number {} exceed the allowed value: {}", number, MAXIMUM_VALUE_ALLOWED);
-            throw new NumbersToWordsException(ERROR_MESSAGE_EXCEEDED_ALLOWED_VALUE);
-        }
+        Long remainder = 0L;
+        final Long quintillion = number / UNIT_MAPPER_QUINTILLION;
+        remainder =  (number % UNIT_MAPPER_QUINTILLION);
 
-        final long billions = number / UNIT_MAPPER_BILLION;
-        int remainder = (int) (number % UNIT_MAPPER_BILLION);
+        final Long quadrillion = remainder / UNIT_MAPPER_QUADRILLION;
+        remainder =  (number % UNIT_MAPPER_QUADRILLION);
 
+        final Long trillions = remainder / UNIT_MAPPER_TRILLION;
+        remainder =  (number % UNIT_MAPPER_TRILLION);
+
+        final Long billions = remainder / UNIT_MAPPER_BILLION;
+        remainder =  (number % UNIT_MAPPER_BILLION);
         final long millions = remainder / UNIT_MAPPER_MILLION;
-        remainder = (int) (number % UNIT_MAPPER_MILLION);
-        final int thousands = remainder / UNIT_MAPPER_THOUSAND;
+        remainder =  (number % UNIT_MAPPER_MILLION);
+        final Long thousands =  (remainder / UNIT_MAPPER_THOUSAND);
         remainder = remainder % UNIT_MAPPER_THOUSAND;
-        final int hundreds = remainder / UNIT_MAPPER_HUNDRED;
-        final int tensAndUnits = remainder % UNIT_MAPPER_HUNDRED;
+        final int hundreds = (int) (remainder / UNIT_MAPPER_HUNDRED);
+        final int tensAndUnits = (int) (remainder % UNIT_MAPPER_HUNDRED);
 
+        appendQuintillion(quintillion);
+        appendQuadrillion(quadrillion);
+        appendTrillions(trillions);
         appendBillions(billions);
         appendMillions(millions);
         appendThousands(thousands);
         appendHundreds(hundreds);
         appendTensAndUnits(tensAndUnits);
         return result.toString();
+    }
+
+    /**
+     * This method appends the billion number to the final equivalent string in words.
+     * @param quintillion  the current billion number to be converted to words.
+     * @throws NumbersToWordsException
+     */
+    private void appendQuintillion(final long quintillion) throws NumbersToWordsException {
+        logger.info("Quadrillions: {}", quintillion);
+        if (quintillion > 0) {
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(quintillion);
+            append(billionsConvertor.convertNumberToWords() + QUINTILLION);
+        }
+    }
+
+    /**
+     * This method appends the billion number to the final equivalent string in words.
+     * @param quadrillion  the current billion number to be converted to words.
+     * @throws NumbersToWordsException
+     */
+    private void appendQuadrillion(final long quadrillion) throws NumbersToWordsException {
+        logger.info("Quadrillions: {}", quadrillion);
+        if (quadrillion > 0) {
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(quadrillion);
+            append(billionsConvertor.convertNumberToWords() + Constants.QUADRILLION);
+        }
+    }
+
+    /**
+     * This method appends the billion number to the final equivalent string in words.
+     * @param trillions  the current billion number to be converted to words.
+     * @throws NumbersToWordsException
+     */
+    private void appendTrillions(final long trillions) throws NumbersToWordsException {
+        logger.info("Trillions: {}", trillions);
+        if (trillions > 0) {
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(trillions);
+            append(billionsConvertor.convertNumberToWords() + Constants.TRILLION);
+        }
     }
 
     /**
@@ -94,7 +142,7 @@ public class NumbersToWordsConverter {
      * @param thousands  the current billion number to be converted to words.
      * @throws NumbersToWordsException
      */
-    private void appendThousands(final int thousands) throws NumbersToWordsException {
+    private void appendThousands(final Long thousands) throws NumbersToWordsException {
         logger.info("Thousands: {}", thousands);
         if (thousands > 0) {
             NumbersToWordsConverter thousandsConvertor = new NumbersToWordsConverter(thousands);

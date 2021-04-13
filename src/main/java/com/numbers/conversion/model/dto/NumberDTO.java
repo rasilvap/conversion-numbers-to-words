@@ -14,7 +14,7 @@ public class NumberDTO {
      * NumberDTO class constructor with params.
      * @param number
      */
-    public NumberDTO(long number) {
+    public NumberDTO(Long number) {
         this.number = number;
     }
 
