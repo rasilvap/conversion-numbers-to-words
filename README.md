@@ -66,8 +66,9 @@ I covered different business cases in the ```NumbersToWordsConverterTest``` clas
 
 # Run the API Locally
 
-
 To run it locally you must follow these three steps:
+
+Clone the app and in the terminal go to the root directory with the command: ```cd conversion-numbers-to-words```.
 
 In the terminal, located in the root directory (conversion-numbers-to-words) run ```mvn clean install```
 
