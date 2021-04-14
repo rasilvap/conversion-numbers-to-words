@@ -20,17 +20,14 @@ public class Constants {
     public static final Long UNIT_MAPPER_QUINTILLION = 1000000000000000000L;
     public static final Long UNIT_MAPPER_QUADRILLION = 1000000000000000L;
     public static final Long UNIT_MAPPER_TRILLION = 1000000000000L;
-    public static final int UNIT_MAPPER_BILLION = 1000000000;
-    public static final int UNIT_MAPPER_MILLION = 1000000;
-    public static final int UNIT_MAPPER_THOUSAND = 1000;
-    public static final int UNIT_MAPPER_HUNDRED = 100;
+    public static final Long UNIT_MAPPER_BILLION = 1000000000L;
+    public static final Long UNIT_MAPPER_MILLION = 1000000L;
+    public static final Long UNIT_MAPPER_THOUSAND = 1000L;
+    public static final Long UNIT_MAPPER_HUNDRED = 100L;
 
     // Words separator.
     public static final String AND_SEPARATOR = " and ";
     public static final String SEPARATOR = " ";
-
-    // Maximum allowed value.
-    public static final Long MAXIMUM_VALUE_ALLOWED = 9223372036854775807L;
 
     // Numbers from Zero to nineteen in words format.
     public static final String[] NUMBERS_UP_TO_19 = { "zero", "one", "two",

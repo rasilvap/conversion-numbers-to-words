@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+
 /**
  * NumberToWordsServic Service class.
  * @author Rodolfo Silva.
@@ -28,6 +30,6 @@ public class NumberToWordsServiceImp implements NumbersToWordsService {
     @Override
     public String convertNumbersToEnglishWords(NumberDTO numberDTO) throws NumbersToWordsException {
         logger.info("Calling NumberToWordsService with input params: {}", numberDTO);
-        return NumbersToWordsConverter.convertNumberToWords(numberDTO.getNumber());
+        return NumbersToWordsConverter.convertNumberToWords(new BigInteger(numberDTO.getNumber().toString()));
     }
 }

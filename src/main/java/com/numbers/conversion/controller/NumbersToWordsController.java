@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class NumbersToWordsController {
 
-	public static final String NUMBERS = "/numbers-words";
-	public static final String NUMBERS_ONE = "/numbers-words/{number}";
+	public static final String NUMBERS = "/numbers-words/{number}";
 
 	private final NumbersToWordsService numbersToWordsService;
 	static Logger logger = LogManager.getLogger(NumbersToWordsController.class);
@@ -34,7 +33,7 @@ public class NumbersToWordsController {
 	 * @return 200 ok if the number was converted to letters, otherwise 400 bad request, if the number is
 	 * higher than the allowed Long max and min numbers.
 	 */
-	@GetMapping(NUMBERS_ONE)
+	@GetMapping(NUMBERS)
 	@ResponseBody
 	public ResponseEntity<String> numbersWords(@PathVariable Long number) {
 		NumberDTO numberDTO = new NumberDTO(number);
