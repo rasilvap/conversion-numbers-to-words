@@ -93,9 +93,9 @@ Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-c
 
 http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
-## Pull request to refactor from get to post:
+## Pull request to refactor from post to Get:
 
-I've created a pull request in the branch refactor/changed-rest-to-Get to change the post verb to a Get one, in this case we are not creating resources, that why I decided to change the verb  to a GET one, and there are more unit test with the limit cases and changes in  the Controllers tests
+I've created a pull request in the branch ```refactor/changed-rest-to-Get``` to change the post verb to a Get one, in this case we are not creating resources, that why I decided to change the verb  to a GET one, and there are more unit test with the limit cases and changes in  the Controllers tests. The postman Collection is updated as well.
 
 ## Postman Collection 
 
