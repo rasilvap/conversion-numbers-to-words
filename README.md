@@ -9,7 +9,7 @@ This application converts a input number to its equivalent in English words.
 
 -Java version 8
 
--Spring boot
+-Spring boot, mvc.
 
 -Junit v5
 
@@ -27,7 +27,7 @@ This application converts a input number to its equivalent in English words.
 
 I pushed always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as ```/feature, /fix, /hotfix``` etc.
 
-The maximun and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775808```, equivalent to the maximun and minimum Long values allowed.
+The maximun and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775808```, equivalent to the maximun and minimum Long Java values allowed.
 
 To handle the input bad format error this app is using a ```@ControllerAdvice``` annotation in the ```ExceptionHandler``` class. This annotation allow us to get and handle all the exceptions in the app, in this case is important to handle the ```400 badRequest``` which is sent when the number is higher than the allowed one or we receive a character as input.
 
