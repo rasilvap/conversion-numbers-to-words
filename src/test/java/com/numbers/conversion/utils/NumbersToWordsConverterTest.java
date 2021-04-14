@@ -192,6 +192,17 @@ class NumbersToWordsConverterTest {
         expectConversion(100000000, "One hundred million");
     }
 
+    @Test
+    public void convertLimitNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
+        expectConversion(-9223372036854775807L, "Negative nine quintillion two hundred and twenty three " +
+                "quadrillion three hundred and seventy two trillion thirty six billion eight hundred and fifty four million " +
+                "seven hundred and seventy five thousand eight hundred and seven");
+        expectConversion(9223372036854775807L, "Nine quintillion two hundred and twenty three quadrillion " +
+                "three hundred and seventy two trillion thirty six billion eight hundred and fifty four million seven hundred " +
+                "and seventy five thousand eight hundred and seven");
+    }
+
+
     private void expectConversion(final long number, final String expectedWords) throws NumbersToWordsException {
         assertEquals(expectedWords, NumbersToWordsConverter.convertNumberToWords(number));
     }

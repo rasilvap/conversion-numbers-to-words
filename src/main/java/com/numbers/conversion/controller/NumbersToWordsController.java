@@ -8,10 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * NumbersToWordsController receives a input number from outside and calls the  numbersToWordsService
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class NumbersToWordsController {
 
 	public static final String NUMBERS = "/numbers-words";
+	public static final String NUMBERS_ONE = "/numbers-words/{number}";
+
 	private final NumbersToWordsService numbersToWordsService;
 	static Logger logger = LogManager.getLogger(NumbersToWordsController.class);
 
@@ -31,13 +30,14 @@ public class NumbersToWordsController {
 
 	/**
 	 * Endpoint to convert a number to words
-	 * @param numberDTO the input number from outside.
-	 * @return 200 ok if the number was converted to letters, otherwise 400 bad request, if the number
-	 * exceed the allowed value (999999999999L).
+	 * @param number the input number from outside.
+	 * @return 200 ok if the number was converted to letters, otherwise 400 bad request, if the number is
+	 * higher than the allowed Long max and min numbers.
 	 */
-	@RequestMapping(value = NUMBERS, method = RequestMethod.POST)
-	public ResponseEntity numbersWords(@RequestBody NumberDTO numberDTO) {
-		logger.info("Starting program with Input request Params: {}", numberDTO.toString());
+	@GetMapping(NUMBERS_ONE)
+	@ResponseBody
+	public ResponseEntity<String> numbersWords(@PathVariable Long number) {
+		NumberDTO numberDTO = new NumberDTO(number);
 		try {
 			return ResponseEntity
 					.status(HttpStatus.OK)

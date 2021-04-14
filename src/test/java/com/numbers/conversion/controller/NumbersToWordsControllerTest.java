@@ -8,20 +8,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -44,27 +41,35 @@ class NumbersToWordsControllerTest {
     public void testNumbersToWordsEndpoint_ok_thenReturnOkStatus() throws Exception {
         when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenReturn("Eighty nine");
 
-        MvcResult result = mockMvc.perform(post("/numbers-words").contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "    \"number\" : 89\n" +
-                        "}"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andReturn();
-        assertEquals(result.getResponse().getContentAsString(), "Eighty nine");
+        mockMvc.perform(get("/numbers-words/89")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Eighty nine")));
+    }
+
+    @Test
+    public void testNumbersToWordsEndpoint_numberIsLimitAllowedValue_thenReturnBadRequest() throws Exception {
+        when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenReturn("Nine quintillion two hundred and twenty three " +
+                "quadrillion three hundred and seventy two trillion thirty six billion eight hundred and fifty four" +
+                " million seven hundred and seventy five thousand eight hundred and seven");
+
+        mockMvc.perform(get("/numbers-words/9223372036854775807")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Nine quintillion two hundred and twenty three " +
+                        "quadrillion three hundred and seventy two trillion thirty six billion eight hundred and fifty four " +
+                        "million seven hundred and seventy five thousand eight hundred and seven")));
     }
 
     @Test
     public void testNumbersToWordsEndpoint_numberNotAllowed_thenReturnBadRequest() throws Exception {
         when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenReturn("Eighty nine");
 
-        MvcResult result = mockMvc.perform(post("/numbers-words").contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "    \"number\" : someInvalidText\n" +
-                        "}"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest())
-                .andReturn();
-        assertThat(result.getResponse().getContentAsString(), containsString("The input number exceed allowed value or is not a Number"));
+        mockMvc.perform(get("/numbers-words/someInvalidInput")).andDo(print()).andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("The input number exceed allowed value or is not a Number")));
+    }
+
+    @Test
+    public void testNumbersToWordsEndpoint_numberExceedAllowedValue_thenReturnBadRequest() throws Exception {
+        when(numbersToWordsService.convertNumbersToEnglishWords(any(NumberDTO.class))).thenReturn("Eighty nine");
+
+        mockMvc.perform(get("/numbers-words/9223372036854775808")).andDo(print()).andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("The input number exceed allowed value or is not a Number")));
     }
 }
