@@ -1,15 +1,15 @@
 # conversion-numbers-to-words
 
-This application converts a input number to its equivalent in English words.
+This application converts a input number to its equivalent in English words. 
 
 ## High-level project architecture:
 <img src = "src/main/resources/images/GeneralOverview.png" />
 
 ## Tech Stack
 
--Java version 11
+-Java version 8
 
--Spring boot
+-Spring boot, mvc.
 
 -Junit v5
 
@@ -21,7 +21,17 @@ This application converts a input number to its equivalent in English words.
 
 -Docker
 
+-Swagger
+
 -In this application, we do not need any database connectivity.
+
+I pushed always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as ```/feature, /fix, /hotfix``` etc.
+
+The maximun and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775808```, equivalent to the maximun and minimum Long Java values allowed.
+
+To handle the input bad format error this app is using a ```@ControllerAdvice``` annotation in the ```ExceptionHandler``` class. This annotation allow us to get and handle all the exceptions in the app, in this case is important to handle the ```400 badRequest``` which is sent when the number is higher than the allowed one or we receive a character as input.
+
+I also added a custom ```NumbersToWordsException``` which extends from ```Exception``` to handle the application exceptions. It is not used because of the nature of the application, the only exception I handling is the ```bad request one``` for bad inputs according to the expressed above.
 
 ##  Classes Diagram
 
@@ -39,7 +49,7 @@ This application converts a input number to its equivalent in English words.
 
 5) Again, calculate the remainder number. 417 % 100 = 17
 
-6) 17 is mapped to ‘Seventeen’, in the convertTensAndUnits method which separates tens and units and maps the number according to the implicit logic in this method. After hundred or thousand when they're alone and after hundred when they're together, is gonna be append and and word to the words.
+6) 17 is mapped to ```Seventeen```, in the convertTensAndUnits method which separates tens and units and maps the number according to the implicit logic in this method. After hundred or thousand when they're alone and after hundred when they're together, is gonna be append and and word to the words.
 
 Finally, the function capitalizeWords formmats the final input and  will return “Twelve thousand four hundred and seventeen”.
 
@@ -49,13 +59,16 @@ Finally, the function capitalizeWords formmats the final input and  will return 
 
 ##  Code coverage results:
 
+I covered different business cases in the ```NumbersToWordsConverterTest``` class according to the constraints of the application The final code coverge percentage for all the application is the next:
+
 <img src = "src/main/resources/images/coverageDiagram.png" />
 
 
 # Run the API Locally
 
-
 To run it locally you must follow these three steps:
+
+Clone the app and in the terminal go to the root directory with the command: ```cd conversion-numbers-to-words```.
 
 In the terminal, located in the root directory (conversion-numbers-to-words) run ```mvn clean install```
 
@@ -78,4 +91,4 @@ http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
 ## Postman Collection 
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/34cd02999866616572f7)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b38bcdcf721e2ba6fbb0)
