@@ -23,7 +23,7 @@ public class NumberDTO {
      */
     public NumberDTO(){}
 
-    private long number;
+    private Long number;
 
     @Override
     public String toString() {

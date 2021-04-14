@@ -2,146 +2,149 @@ package com.numbers.conversion.utils;
 
 import com.numbers.conversion.exception.NumbersToWordsException;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumbersToWordsConverterTest {
     @Test
     public void convertNumberZero() throws NumbersToWordsException {
-        expectConversion(0, "Zero");
+        expectConversion(0L, "Zero");
     }
 
     @Test
     public void convertNumberWithJustOneDigit_Ok_NumberIsConvertedToWords() throws NumbersToWordsException {
-        expectConversion(1, "One");
-        expectConversion(2, "Two");
-        expectConversion(3, "Three");
-        expectConversion(4, "Four");
-        expectConversion(5, "Five");
-        expectConversion(6, "Six");
-        expectConversion(7, "Seven");
-        expectConversion(8, "Eight");
-        expectConversion(9, "Nine");
+        expectConversion(1L, "One");
+        expectConversion(2L, "Two");
+        expectConversion(3L, "Three");
+        expectConversion(4L, "Four");
+        expectConversion(5L, "Five");
+        expectConversion(6L, "Six");
+        expectConversion(7L, "Seven");
+        expectConversion(8L, "Eight");
+        expectConversion(9L, "Nine");
     }
 
     @Test
     public void convertNumberWithTwoDigitsFromTenToNineteen_ok_NumberIsConvertedToWords() throws NumbersToWordsException {
-        expectConversion(10, "Ten");
-        expectConversion(11, "Eleven");
-        expectConversion(12, "Twelve");
-        expectConversion(13, "Thirteen");
-        expectConversion(14, "Fourteen");
-        expectConversion(15, "Fifteen");
-        expectConversion(16, "Sixteen");
-        expectConversion(17, "Seventeen");
-        expectConversion(18, "Eighteen");
-        expectConversion(19, "Nineteen");
+        expectConversion(10L, "Ten");
+        expectConversion(11L, "Eleven");
+        expectConversion(12L, "Twelve");
+        expectConversion(13L, "Thirteen");
+        expectConversion(14L, "Fourteen");
+        expectConversion(15L, "Fifteen");
+        expectConversion(16L, "Sixteen");
+        expectConversion(17L, "Seventeen");
+        expectConversion(18L, "Eighteen");
+        expectConversion(19L, "Nineteen");
     }
 
     @Test
     public void convertNumbersMultipleOfTenUntilNinety_ok_NumbersAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(20, "Twenty");
-        expectConversion(30, "Thirty");
-        expectConversion(40, "Forty");
-        expectConversion(50, "Fifty");
-        expectConversion(60, "Sixty");
-        expectConversion(70, "Seventy");
-        expectConversion(80, "Eighty");
-        expectConversion(90, "Ninety");
+        expectConversion(20L, "Twenty");
+        expectConversion(30L, "Thirty");
+        expectConversion(40L, "Forty");
+        expectConversion(50L, "Fifty");
+        expectConversion(60L, "Sixty");
+        expectConversion(70L, "Seventy");
+        expectConversion(80L, "Eighty");
+        expectConversion(90L, "Ninety");
     }
 
     @Test
     public void convertNumbersOfTwoDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(45, "Forty five");
-        expectConversion(87, "Eighty seven");
-        expectConversion(66, "Sixty six");
-        expectConversion(32, "Thirty two");
-        expectConversion(85, "Eighty five");
+        expectConversion(45L, "Forty five");
+        expectConversion(87L, "Eighty seven");
+        expectConversion(66L, "Sixty six");
+        expectConversion(32L, "Thirty two");
+        expectConversion(85L, "Eighty five");
     }
 
     @Test
     public void convertHundredNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(100, "One hundred");
-        expectConversion(200, "Two hundred");
-        expectConversion(300, "Three hundred");
-        expectConversion(400, "Four hundred");
-        expectConversion(500, "Five hundred");
-        expectConversion(600, "Six hundred");
-        expectConversion(700, "Seven hundred");
-        expectConversion(800, "Eight hundred");
-        expectConversion(900, "Nine hundred");
+        expectConversion(100L, "One hundred");
+        expectConversion(200L, "Two hundred");
+        expectConversion(300L, "Three hundred");
+        expectConversion(400L, "Four hundred");
+        expectConversion(500L, "Five hundred");
+        expectConversion(600L, "Six hundred");
+        expectConversion(700L, "Seven hundred");
+        expectConversion(800L, "Eight hundred");
+        expectConversion(900L, "Nine hundred");
     }
 
     @Test
     public void convertNumbersOfThreeDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(555, "Five hundred and fifty five");
-        expectConversion(643, "Six hundred and forty three");
-        expectConversion(871, "Eight hundred and seventy one");
-        expectConversion(999, "Nine hundred and ninety nine");
-        expectConversion(890, "Eight hundred and ninety");
-        expectConversion(145, "One hundred and forty five");
+        expectConversion(555L, "Five hundred and fifty five");
+        expectConversion(643L, "Six hundred and forty three");
+        expectConversion(871L, "Eight hundred and seventy one");
+        expectConversion(999L, "Nine hundred and ninety nine");
+        expectConversion(890L, "Eight hundred and ninety");
+        expectConversion(145L, "One hundred and forty five");
 
     }
 
     @Test
     public void convertThousandsNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(1000, "One thousand");
-        expectConversion(2000, "Two thousand");
-        expectConversion(3000, "Three thousand");
-        expectConversion(4000, "Four thousand");
-        expectConversion(5000, "Five thousand");
-        expectConversion(6000, "Six thousand");
-        expectConversion(7000, "Seven thousand");
-        expectConversion(8000, "Eight thousand");
-        expectConversion(9000, "Nine thousand");
+        expectConversion(1000L, "One thousand");
+        expectConversion(2000L, "Two thousand");
+        expectConversion(3000L, "Three thousand");
+        expectConversion(4000L, "Four thousand");
+        expectConversion(5000L, "Five thousand");
+        expectConversion(6000L, "Six thousand");
+        expectConversion(7000L, "Seven thousand");
+        expectConversion(8000L, "Eight thousand");
+        expectConversion(9000L, "Nine thousand");
     }
 
     @Test
     public void convertNumbersOfFourDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(1001, "One thousand and one");
-        expectConversion(4567, "Four thousand five hundred and sixty seven");
-        expectConversion(9999, "Nine thousand nine hundred and ninety nine");
-        expectConversion(5237, "Five thousand two hundred and thirty seven");
+        expectConversion(1001L, "One thousand and one");
+        expectConversion(4567L, "Four thousand five hundred and sixty seven");
+        expectConversion(9999L, "Nine thousand nine hundred and ninety nine");
+        expectConversion(5237L, "Five thousand two hundred and thirty seven");
     }
 
     @Test
     public void convertNumbersOfFiveDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(12345, "Twelve thousand three hundred and forty five");
-        expectConversion(54321, "Fifty four thousand three hundred and twenty one");
-        expectConversion(7777, "Seven thousand seven hundred and seventy seven");
+        expectConversion(12345L, "Twelve thousand three hundred and forty five");
+        expectConversion(54321L, "Fifty four thousand three hundred and twenty one");
+        expectConversion(7777L, "Seven thousand seven hundred and seventy seven");
     }
 
     @Test
     public void convertNumbersOfSixDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(654321, "Six hundred and fifty four thousand three hundred and twenty one");
-        expectConversion(123456, "One hundred and twenty three thousand four hundred and fifty six");
-        expectConversion(898801, "Eight hundred and ninety eight thousand eight hundred and one");
+        expectConversion(654321L, "Six hundred and fifty four thousand three hundred and twenty one");
+        expectConversion(123456L, "One hundred and twenty three thousand four hundred and fifty six");
+        expectConversion(898801L, "Eight hundred and ninety eight thousand eight hundred and one");
     }
 
     @Test
     public void convertNumbersOfSevenDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(7654321, "Seven million six hundred and fifty four thousand three hundred and twenty one");
-        expectConversion(1234567, "One million two hundred and thirty four thousand five hundred and sixty seven");
-        expectConversion(8765450, "Eight million seven hundred and sixty five thousand four hundred and fifty");
+        expectConversion(7654321L, "Seven million six hundred and fifty four thousand three hundred and twenty one");
+        expectConversion(1234567L, "One million two hundred and thirty four thousand five hundred and sixty seven");
+        expectConversion(8765450L, "Eight million seven hundred and sixty five thousand four hundred and fifty");
     }
 
     @Test
     public void convertNumbersOfEightDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(87654321, "Eighty seven million six hundred and fifty four thousand three hundred and twenty one");
-        expectConversion(11111101, "Eleven million one hundred and eleven thousand one hundred and one");
+        expectConversion(87654321L, "Eighty seven million six hundred and fifty four thousand three hundred and twenty one");
+        expectConversion(11111101L, "Eleven million one hundred and eleven thousand one hundred and one");
     }
 
     @Test
     public void convertNumbersOfNineDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(987654321, "Nine hundred and eighty seven million six hundred and fifty four " +
+        expectConversion(987654321L, "Nine hundred and eighty seven million six hundred and fifty four " +
                 "thousand three hundred and twenty one");
-        expectConversion(111111001, "One hundred and eleven million one hundred and eleven thousand and one");
+        expectConversion(111111001L, "One hundred and eleven million one hundred and eleven thousand and one");
     }
 
     @Test
     public void convertNumbersOfTenDigits_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
         expectConversion(9876543210L, "Nine billion eight hundred and seventy six million five hundred " +
                 "and forty three thousand two hundred and ten");
-        expectConversion(1111110001, "One billion one hundred and eleven million one hundred and ten thousand and one");
+        expectConversion(1111110001L, "One billion one hundred and eleven million one hundred and ten thousand and one");
     }
 
     @Test
@@ -181,29 +184,29 @@ class NumbersToWordsConverterTest {
     public void convertNegativeNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
         expectConversion(-9876543210123L, "Negative nine trillion eight hundred and seventy six billion five hundred and forty three million two" +
                 " hundred and ten thousand one hundred and twenty three");
-        expectConversion(-101, "Negative one hundred and one");
-        expectConversion(-800, "Negative eight hundred");
-        expectConversion(-6666656, "Negative six million six hundred and sixty six thousand six hundred and fifty six");
+        expectConversion(-101L, "Negative one hundred and one");
+        expectConversion(-800L, "Negative eight hundred");
+        expectConversion(-6666656L, "Negative six million six hundred and sixty six thousand six hundred and fifty six");
     }
 
     @Test
     public void convertNegativeFollowedByPositiveNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(-88763, "Negative eighty eight thousand seven hundred and sixty three");
-        expectConversion(100000000, "One hundred million");
+        expectConversion(-88763L, "Negative eighty eight thousand seven hundred and sixty three");
+        expectConversion(100000000L, "One hundred million");
     }
 
     @Test
     public void convertLimitNumbers_ok_NumberAreConvertedToWords() throws NumbersToWordsException {
-        expectConversion(-9223372036854775807L, "Negative nine quintillion two hundred and twenty three " +
+        expectConversion(-9223372036854775808L, "Negative nine quintillion two hundred and twenty three " +
                 "quadrillion three hundred and seventy two trillion thirty six billion eight hundred and fifty four million " +
-                "seven hundred and seventy five thousand eight hundred and seven");
+                "seven hundred and seventy five thousand eight hundred and eight");
         expectConversion(9223372036854775807L, "Nine quintillion two hundred and twenty three quadrillion " +
                 "three hundred and seventy two trillion thirty six billion eight hundred and fifty four million seven hundred " +
                 "and seventy five thousand eight hundred and seven");
     }
 
 
-    private void expectConversion(final long number, final String expectedWords) throws NumbersToWordsException {
-        assertEquals(expectedWords, NumbersToWordsConverter.convertNumberToWords(number));
+    private void expectConversion(final Long number, final String expectedWords) throws NumbersToWordsException {
+        assertEquals(expectedWords, NumbersToWordsConverter.convertNumberToWords(new BigInteger(number.toString())));
     }
 }
