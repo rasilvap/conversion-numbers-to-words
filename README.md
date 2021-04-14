@@ -91,4 +91,4 @@ http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
 ## Postman Collection 
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/34cd02999866616572f7)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b38bcdcf721e2ba6fbb0)
