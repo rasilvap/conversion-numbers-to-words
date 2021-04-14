@@ -39,7 +39,7 @@ I also added a custom ```NumbersToWordsException``` which extends from ```Except
 
 ##  Packages Diagram
 
-<img src = "src/main/resources/images/PackagesDiagram.png" width="200" height="400" />
+<img src = "src/main/resources/images/PackagesDiagram.png" width="300" height="450" />
 
 ##  How the algorithm Works
 
