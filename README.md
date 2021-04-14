@@ -93,7 +93,7 @@ Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-c
 
 http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
-## Higher and less Long allowed numbers test:
+## Negative Long allowed number test:
 
 I tested in postaman the big negative number allowed by the Long type (-9223372036854775808).
 
