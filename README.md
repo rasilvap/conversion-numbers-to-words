@@ -37,6 +37,10 @@ I also added a custom ```NumbersToWordsException``` which extends from ```Except
 
 <img src = "src/main/resources/images/classDiagram.png" />
 
+##  Packages Diagram
+
+<img src = "src/main/resources/images/PackagesDiagram.png" />
+
 ##  How the algorithm Works
 
 1) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and en each division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, Calculate the remainder number. 12417 % 1000 = 417 with have 1 in the thousands variable and 10 as remainder this ten will be the next input in the sequence to be converted.
