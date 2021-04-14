@@ -27,7 +27,7 @@ This application converts a input number to its equivalent in English words.
 
 I pushed always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as ```/feature, /fix, /hotfix``` etc.
 
-The maximun and minimum allowed values are ```-9223372036854775807``` and ```9223372036854775807```, equivalent to the maximun and minimum Long Java values allowed.
+The maximun and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775807```, equivalent to the maximun and minimum Long Java values allowed.
 
 To handle the input bad format error this app is using a ```@ControllerAdvice``` annotation in the ```ExceptionHandler``` class. This annotation allow us to get and handle all the exceptions in the app, in this case is important to handle the ```400 badRequest``` which is sent when the number is higher than the allowed one or we receive a character as input.
 
@@ -93,12 +93,13 @@ Then in the same terminal run the command:  ```docker run -p 8080:8080 numbers-c
 
 http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
-## Pull request to refactor from post to Get:
+## Higher and less Long allowed numbers test:
 
-I've created a pull request in the branch ```refactor/changed-rest-to-Get``` to change the post verb to a Get one, in this case we are not creating resources, that why I decided to change the verb  to a GET one, and there are more unit test with the limit cases and changes in  the Controllers tests. The postman Collection is updated as well.
+I tested in postaman the big negative number allowed by the Long type (-9223372036854775808).
 
-I recommend to test over this brach git checkout ```refactor/changed-rest-to-Get``` followed by ```mvn clean install``` and then ```docker build --no-cache -t numbers-conversion-to-words:1.0 .``` to generate again the docker image with the new changes and finally use the get method from the postman collection.
+<img src = "src/main/resources/images/testLessHigherLongNumber.png" />
 
 ## Postman Collection 
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/cd415801fdaa818862d9)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/98b1a524bfd95a2aebce)
