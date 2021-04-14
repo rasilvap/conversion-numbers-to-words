@@ -1,13 +1,13 @@
 # conversion-numbers-to-words
 
-This application converts a input number to its equivalent in English words.
+This application converts a input number to its equivalent in English words. 
 
 ## High-level project architecture:
 <img src = "src/main/resources/images/GeneralOverview.png" />
 
 ## Tech Stack
 
--Java version 11
+-Java version 8
 
 -Spring boot
 
@@ -21,7 +21,11 @@ This application converts a input number to its equivalent in English words.
 
 -Docker
 
+-Swagger
+
 -In this application, we do not need any database connectivity.
+
+I pushed always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as /feature, /fix, /hotfix etc.
 
 ##  Classes Diagram
 
