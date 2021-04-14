@@ -97,6 +97,8 @@ http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
 I've created a pull request in the branch ```refactor/changed-rest-to-Get``` to change the post verb to a Get one, in this case we are not creating resources, that why I decided to change the verb  to a GET one, and there are more unit test with the limit cases and changes in  the Controllers tests. The postman Collection is updated as well.
 
+I recommend to test over this brach git checkout ```refactor/changed-rest-to-Get``` followed by ```mvn clean install``` and then ```docker build --no-cache -t numbers-conversion-to-words:1.0 .``` to generate again the docker image with the new changes and finally use the get method from the postman collection.
+
 ## Postman Collection 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/cd415801fdaa818862d9)
