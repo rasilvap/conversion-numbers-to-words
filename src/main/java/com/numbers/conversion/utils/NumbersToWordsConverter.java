@@ -32,7 +32,7 @@ public class NumbersToWordsConverter {
      */
     private NumbersToWordsConverter(final long number) {
         logger.info("Number to be converted to words: {}", number);
-        this.number = number * (-1);
+        this.number = number;
     }
 
     /**
@@ -165,7 +165,7 @@ public class NumbersToWordsConverter {
      * @throws NumbersToWordsException
      */
     private void appendTensAndUnits(final Long tensAndUnits) {
-        if (tensAndUnits > 0 || result.length() == 0) {
+        if (tensAndUnits > 0 || number == 0) {
             appendWithAnd(convertTensAndUnits(tensAndUnits.intValue()));
         }
     }
@@ -200,16 +200,16 @@ public class NumbersToWordsConverter {
 
     /**
      * Converts the Tens and units part to its equivalent in words.
-     * @param number
+     * @param tenAndUnitsNumber
      * @return
      */
-    private String convertTensAndUnits(final int number) {
+    private String convertTensAndUnits(final int tenAndUnitsNumber) {
         logger.info("Tens and Units to be converted: {}", number);
-        final int tens = number / 10;
-        final int units = number - tens * 10;
+        final int tens = tenAndUnitsNumber / 10;
+        final int units = tenAndUnitsNumber - tens * 10;
 
-        if (number < 20) {
-            return NUMBERS_UP_TO_19[number];
+        if (tenAndUnitsNumber < 20) {
+            return NUMBERS_UP_TO_19[tenAndUnitsNumber];
         } else if (units == 0) {
             return MULTIPLES_OF_10[tens];
         } else {
