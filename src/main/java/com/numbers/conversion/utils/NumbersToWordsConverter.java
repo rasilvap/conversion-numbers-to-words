@@ -3,9 +3,6 @@ package com.numbers.conversion.utils;
 import com.numbers.conversion.exception.NumbersToWordsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.math.BigInteger;
-
 import static com.numbers.conversion.utils.Constants.*;
 import static com.numbers.conversion.utils.WordsConversion.capitalizeAndFormatFinalString;
 
@@ -13,7 +10,7 @@ import static com.numbers.conversion.utils.WordsConversion.capitalizeAndFormatFi
  * NumbersToWordsConverter is the utility class which convert the input number to is equivalent in words.
  */
 public class NumbersToWordsConverter {
-    private final BigInteger number;
+    private final long number;
     private StringBuffer result = new StringBuffer();
     static Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
     static boolean isNegativeNumber;
@@ -24,8 +21,8 @@ public class NumbersToWordsConverter {
      * @return the input number in its equivalent English words.
      * @throws NumbersToWordsException
      */
-    public static String convertNumberToWords(final BigInteger number) throws NumbersToWordsException {
-        isNegativeNumber = (number.signum() == -1) ? true : false;
+    public static String convertNumberToWords(final long number) throws NumbersToWordsException {
+        isNegativeNumber = (number < 0) ? true : false;
         logger.info("Starting number transformation to words with input number: {}", number);
         return capitalizeAndFormatFinalString(new NumbersToWordsConverter(number).convertNumberToWords(), isNegativeNumber);
     }
@@ -33,10 +30,9 @@ public class NumbersToWordsConverter {
     /**
      * This constructor set the current number to be converted to the global number variable.
      */
-    private NumbersToWordsConverter(final BigInteger number) {
-        BigInteger bigintegerNumber=new BigInteger(number.toString());
-        logger.info("Number to be converted to words: {}", bigintegerNumber);
-        this.number = bigintegerNumber.abs();
+    private NumbersToWordsConverter(final long number) {
+        logger.info("Number to be converted to words: {}", number);
+        this.number = number * (-1);
     }
 
     /**
@@ -46,33 +42,30 @@ public class NumbersToWordsConverter {
      * @throws NumbersToWordsException
      */
     private String convertNumberToWords() throws NumbersToWordsException {
-        BigInteger remainder;
-        final BigInteger quintillion = number.divide(new BigInteger(UNIT_MAPPER_QUINTILLION.toString()));
-        remainder =  number.mod(new BigInteger(UNIT_MAPPER_QUINTILLION.toString()));
+        long remainder;
+        final long quintillion = number / UNIT_MAPPER_QUINTILLION;
+        remainder = number % UNIT_MAPPER_QUINTILLION;
+        final Long quadrillion = remainder / UNIT_MAPPER_QUADRILLION;
+        remainder = number % UNIT_MAPPER_QUADRILLION;
+        final Long trillions = remainder / UNIT_MAPPER_TRILLION;
+        remainder = number % UNIT_MAPPER_TRILLION;
+        final Long billions = remainder / UNIT_MAPPER_BILLION;
+        remainder = number % UNIT_MAPPER_BILLION;
+        final long millions = remainder / UNIT_MAPPER_MILLION;
+        remainder = number % UNIT_MAPPER_MILLION;
+        final Long thousands = remainder / UNIT_MAPPER_THOUSAND;
+        remainder = number % UNIT_MAPPER_THOUSAND;
+        final Long hundreds = remainder / UNIT_MAPPER_HUNDRED;
+        final Long tensAndUnits = remainder % UNIT_MAPPER_HUNDRED;
 
-        final Long quadrillion = remainder.longValue() / UNIT_MAPPER_QUADRILLION;
-        remainder =  number.mod(new BigInteger(UNIT_MAPPER_QUADRILLION.toString()));
-
-        final Long trillions = remainder.longValue() / UNIT_MAPPER_TRILLION;
-        remainder =  number.mod(new BigInteger(UNIT_MAPPER_TRILLION.toString()));
-
-        final Long billions = remainder.longValue() / UNIT_MAPPER_BILLION;
-        remainder =  number.mod(new BigInteger(UNIT_MAPPER_BILLION.toString()));
-        final long millions = remainder.longValue() / UNIT_MAPPER_MILLION;
-        remainder =  number.mod(new BigInteger(UNIT_MAPPER_MILLION.toString()));
-        final Long thousands =  remainder.longValue() / UNIT_MAPPER_THOUSAND;
-        remainder = number.mod(new BigInteger(UNIT_MAPPER_THOUSAND.toString()));
-        final Long hundreds =  remainder.longValue() / UNIT_MAPPER_HUNDRED;
-        final Long tensAndUnits = remainder.mod(new BigInteger(UNIT_MAPPER_HUNDRED.toString())).longValue();
-
-        appendQuintillion(quintillion);
-        appendQuadrillion(quadrillion);
-        appendTrillions(trillions);
-        appendBillions(billions);
-        appendMillions(millions);
-        appendThousands(thousands);
-        appendHundreds(hundreds);
-        appendTensAndUnits(tensAndUnits);
+        appendQuintillion(getAbsoluteValue(quintillion));
+        appendQuadrillion(getAbsoluteValue(quadrillion));
+        appendTrillions(getAbsoluteValue(trillions));
+        appendBillions(getAbsoluteValue(billions));
+        appendMillions(getAbsoluteValue(millions));
+        appendThousands(getAbsoluteValue(thousands));
+        appendHundreds(getAbsoluteValue(hundreds));
+        appendTensAndUnits(getAbsoluteValue(tensAndUnits));
         return result.toString();
     }
 
@@ -81,9 +74,9 @@ public class NumbersToWordsConverter {
      * @param quintillion  the current billion number to be converted to words.
      * @throws NumbersToWordsException
      */
-    private void appendQuintillion(final BigInteger quintillion) throws NumbersToWordsException {
+    private void appendQuintillion(final long quintillion) throws NumbersToWordsException {
         logger.info("Quadrillions: {}", quintillion);
-        if (quintillion.signum() > 0) {
+        if (quintillion > 0) {
             NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(quintillion);
             append(billionsConvertor.convertNumberToWords() + QUINTILLION);
         }
@@ -97,7 +90,7 @@ public class NumbersToWordsConverter {
     private void appendQuadrillion(final Long quadrillion) throws NumbersToWordsException {
         logger.info("Quadrillions: {}", quadrillion);
         if (quadrillion > 0) {
-            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(new BigInteger(quadrillion.toString()));
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(quadrillion);
             append(billionsConvertor.convertNumberToWords() + Constants.QUADRILLION);
         }
     }
@@ -110,7 +103,7 @@ public class NumbersToWordsConverter {
     private void appendTrillions(final Long trillions) throws NumbersToWordsException {
         logger.info("Trillions: {}", trillions);
         if (trillions > 0) {
-            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(new BigInteger(trillions.toString()));
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(trillions);
             append(billionsConvertor.convertNumberToWords() + Constants.TRILLION);
         }
     }
@@ -123,7 +116,7 @@ public class NumbersToWordsConverter {
     private void appendBillions(final Long billions) throws NumbersToWordsException {
         logger.info("Billions: {}", billions);
         if (billions > 0) {
-            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(new BigInteger(billions.toString()));
+            NumbersToWordsConverter billionsConvertor = new NumbersToWordsConverter(billions);
             append(billionsConvertor.convertNumberToWords() + Constants.BILLION);
         }
     }
@@ -136,7 +129,7 @@ public class NumbersToWordsConverter {
     private void appendMillions(final Long millions) throws NumbersToWordsException {
         logger.info("Millions: {}", millions);
         if (millions > 0) {
-            NumbersToWordsConverter millionsConvertor = new NumbersToWordsConverter(new BigInteger(millions.toString()));
+            NumbersToWordsConverter millionsConvertor = new NumbersToWordsConverter(millions);
             append(millionsConvertor.convertNumberToWords() + Constants.MILLION);
         }
     }
@@ -149,7 +142,7 @@ public class NumbersToWordsConverter {
     private void appendThousands(final Long thousands) throws NumbersToWordsException {
         logger.info("Thousands: {}", thousands);
         if (thousands > 0) {
-            NumbersToWordsConverter thousandsConvertor = new NumbersToWordsConverter(new BigInteger(thousands.toString()));
+            NumbersToWordsConverter thousandsConvertor = new NumbersToWordsConverter(thousands);
             append(thousandsConvertor.convertNumberToWords() + THOUSAND);
         }
     }
@@ -162,7 +155,7 @@ public class NumbersToWordsConverter {
     private void appendHundreds(final Long hundreds) {
         logger.info("Hundreds: {}", hundreds);
         if (hundreds > 0) {
-            append(NUMBERS_UP_TO_19[hundreds.intValue()] + HUNDRED);
+            append(NUMBERS_UP_TO_19[Math.abs(hundreds.intValue())] + HUNDRED);
         }
     }
 
@@ -216,13 +209,15 @@ public class NumbersToWordsConverter {
         final int units = number - tens * 10;
 
         if (number < 20) {
-            return NUMBERS_UP_TO_19[number];
+            return NUMBERS_UP_TO_19[Math.abs(number)];
         } else if (units == 0) {
-            return MULTIPLES_OF_10[tens];
+            return MULTIPLES_OF_10[Math.abs(tens)];
         } else {
-            return MULTIPLES_OF_10[tens] + SEPARATOR + NUMBERS_UP_TO_19[units];
+            return MULTIPLES_OF_10[Math.abs(tens)] + SEPARATOR + NUMBERS_UP_TO_19[Math.abs(units)];
         }
     }
 
-
+    private long getAbsoluteValue(long result){
+        return Math.abs(result);
+    }
 }

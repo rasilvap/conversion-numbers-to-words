@@ -30,6 +30,6 @@ public class NumberToWordsServiceImp implements NumbersToWordsService {
     @Override
     public String convertNumbersToEnglishWords(NumberDTO numberDTO) throws NumbersToWordsException {
         logger.info("Calling NumberToWordsService with input params: {}", numberDTO);
-        return NumbersToWordsConverter.convertNumberToWords(new BigInteger(numberDTO.getNumber().toString()));
+        return NumbersToWordsConverter.convertNumberToWords(numberDTO.getNumber());
     }
 }
