@@ -43,19 +43,23 @@ I also added a custom ```NumbersToWordsException``` which extends from ```Except
 
 ##  How the algorithm Works
 
-1) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and en each division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, Calculate the remainder number. 12417 % 1000 = 417 with have 1 in the thousands variable and 10 as remainder this ten will be the next input in the sequence to be converted.
+1) As general explanation the number has different mapping units for division and as mapper words, trillions billions and so far and so for.
 
-2) If the number has billions then the number global variable will be initialized with the billions number and the program will go again to the convertNumberToWords method to get the word equivalent number just for the billion part, otherwise if there is not a billion part the program continues with the next number in the sequence in this case million and so far and so for.
+2) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and after each simple division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, 
+we calculate the remainder number ```12417 % 1000 = 417``` with have ```12``` in the thousands variable and ```417``` as remainder.
+this ```417``` will be the next input in the sequence to be converted, after 12and will be divided by the hundred mapper and so far and so for.
 
-3) Find the next highest unit for 417, we will get Hundred.
+3) 12 is the current program input to be mapped to words. In this case we just will have tens and units to convert.
+12 will be mapped to twelve + thousand and continue with the next mapper.
 
-4) Divide 417 by Hundred (417/100 = 4), the result is 4. 4 is found on NUMBERS_UP_TO_19 array. So, return “four”, in this case.
+4) 417 will be the Divide  by Hundred (417/100 = 4), the result is 4 Hundrer in its mapping.
 
-5) Again, calculate the remainder number. 417 % 100 = 17
+5) Again, calculate the remainder number. 417 % 100 = 17, and 17 4 is found on NUMBERS_UP_TO_19 array. So, return ```Seventeen```, in this case the convertTensAndUnits method.
+For this case we append an ```and``` separator. each time we have ten units.
 
-6) 17 is mapped to ```Seventeen```, in the convertTensAndUnits method which separates tens and units and maps the number according to the implicit logic in this method. After hundred or thousand when they're alone and after hundred when they're together, is gonna be append and and word to the words.
+7)Finally, the function capitalizeWords formats the final input and  will return “Twelve thousand four hundred and seventeen”.
 
-Finally, the function capitalizeWords formats the final input and  will return “Twelve thousand four hundred and seventeen”.
+In the case of negative numbers the program appends a negative word at the begin of the final translate number, using the isNegativeNumber flag variable.
 
 <img src = "src/main/resources/images/Algorithm.png" />
 
