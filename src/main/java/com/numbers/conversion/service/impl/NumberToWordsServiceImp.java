@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
- * NumberToWordsServic Service class.
+ * NumberToWordsService Service class.
  * @author Rodolfo Silva.
  *
  */
@@ -22,7 +22,7 @@ public class NumberToWordsServiceImp implements NumbersToWordsService {
      * This method starts with the conversion flow invoking the convertNumberToWords method.
      * with the input number param.
      * @param numberDTO input number param to be converted to words.
-     * @return The number converiosn to words.
+     * @return The number conversion to words.
      * @throws NumbersToWordsException
      */
     @Override

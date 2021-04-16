@@ -13,7 +13,7 @@ This application converts a input number to its equivalent in English words.
 
 -Junit v5
 
--Loombook
+-Lombok
 
 -spring-boot-starter-web
 
@@ -25,9 +25,9 @@ This application converts a input number to its equivalent in English words.
 
 -In this application, we do not need any database connectivity.
 
-I pushed always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as ```/feature, /fix, /hotfix``` etc.
+I pushed my changes always to the main branch because I was the only developer working in this Project, in another scenario with multiple developers, we have to follow a branch strategy, with the different branches for development and master ones, with different conventions such as ```/feature, /fix, /hotfix``` etc.
 
-The maximun and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775807```, equivalent to the maximun and minimum Long Java values allowed.
+The maximum and minimum allowed values are ```-9223372036854775808``` and ```9223372036854775807```, equivalent to the maximum and minimum Long Java values allowed.
 
 To handle the input bad format error this app is using a ```@ControllerAdvice``` annotation in the ```ExceptionHandler``` class. This annotation allow us to get and handle all the exceptions in the app, in this case is important to handle the ```400 badRequest``` which is sent when the number is higher than the allowed one or we receive a character as input.
 
@@ -45,7 +45,7 @@ I also added a custom ```NumbersToWordsException``` which extends from ```Except
 
 1) The program starts in the convertNumberToWords method. First divide the initial number by mapper units (billions,  millions, thousands, hundreds) and en each division calculate the remainder of the current number to get the next number in the sequence, for example with 12417, Calculate the remainder number. 12417 % 1000 = 417 with have 1 in the thousands variable and 10 as remainder this ten will be the next input in the sequence to be converted.
 
-2) If the number has billions then the number global variable will be initialized with the billions number and the program will go again to the convertNumberToWords method to get the word equivalent number just for the billion part, otherwise if there is not billion part the program continues witn the next number in the sequence in this case million and so far and so for.
+2) If the number has billions then the number global variable will be initialized with the billions number and the program will go again to the convertNumberToWords method to get the word equivalent number just for the billion part, otherwise if there is not a billion part the program continues with the next number in the sequence in this case million and so far and so for.
 
 3) Find the next highest unit for 417, we will get Hundred.
 
@@ -55,7 +55,7 @@ I also added a custom ```NumbersToWordsException``` which extends from ```Except
 
 6) 17 is mapped to ```Seventeen```, in the convertTensAndUnits method which separates tens and units and maps the number according to the implicit logic in this method. After hundred or thousand when they're alone and after hundred when they're together, is gonna be append and and word to the words.
 
-Finally, the function capitalizeWords formmats the final input and  will return “Twelve thousand four hundred and seventeen”.
+Finally, the function capitalizeWords formats the final input and  will return “Twelve thousand four hundred and seventeen”.
 
 <img src = "src/main/resources/images/Algorithm.png" />
 
@@ -63,7 +63,7 @@ Finally, the function capitalizeWords formmats the final input and  will return 
 
 ##  Code coverage results:
 
-I covered different business cases in the ```NumbersToWordsConverterTest``` class according to the constraints of the application The final code coverge percentage for all the application is the next:
+I covered different business cases in the ```NumbersToWordsConverterTest``` class according to the constraints of the application The final code coverage percentage for all the application is the next:
 
 <img src = "src/main/resources/images/coverageDiagram.png" />
 
@@ -95,7 +95,7 @@ http://localhost:8080/swagger-ui.html#/numbers-to-words-controller
 
 ## Higher and less Long allowed numbers test:
 
-I tested in postaman the big negative number allowed by the Long type (-9223372036854775808).
+I tested in postman the big negative number allowed by the Long type (-9223372036854775808).
 
 <img src = "src/main/resources/images/testLessHigherLongNumber.png" />
 
