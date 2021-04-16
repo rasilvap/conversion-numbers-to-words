@@ -155,7 +155,7 @@ public class NumbersToWordsConverter {
     private void appendHundreds(final Long hundreds) {
         logger.info("Hundreds: {}", hundreds);
         if (hundreds > 0) {
-            append(NUMBERS_UP_TO_19[Math.abs(hundreds.intValue())] + HUNDRED);
+            append(NUMBERS_UP_TO_19[hundreds.intValue()] + HUNDRED);
         }
     }
 
@@ -206,14 +206,14 @@ public class NumbersToWordsConverter {
     private String convertTensAndUnits(final int tenAndUnitsNumber) {
         logger.info("Tens and Units to be converted: {}", number);
         final int tens = tenAndUnitsNumber / 10;
-        final int units = tenAndUnitsNumber - tens * 10;
+        final int units = tenAndUnitsNumber - (tens * 10);
 
         if (tenAndUnitsNumber < 20) {
             return NUMBERS_UP_TO_19[tenAndUnitsNumber];
         } else if (units == 0) {
             return MULTIPLES_OF_10[tens];
         } else {
-            return MULTIPLES_OF_10[tens] + SEPARATOR + NUMBERS_UP_TO_19[Math.abs(units)];
+            return MULTIPLES_OF_10[tens] + SEPARATOR + NUMBERS_UP_TO_19[units];
         }
     }
 

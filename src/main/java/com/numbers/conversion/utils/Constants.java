@@ -5,7 +5,8 @@ package com.numbers.conversion.utils;
  */
 public class Constants {
 
-    private Constants() { }
+    private Constants() {
+    }
 
     // Units of Mapping in words.
     public static final String QUINTILLION = " quintillion";
@@ -30,14 +31,14 @@ public class Constants {
     public static final String SEPARATOR = " ";
 
     // Numbers from Zero to nineteen in words format.
-    public static final String[] NUMBERS_UP_TO_19 = { "zero", "one", "two",
+    public static final String[] NUMBERS_UP_TO_19 = {"zero", "one", "two",
             "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
-            "seventeen", "eighteen", "nineteen" };
+            "seventeen", "eighteen", "nineteen"};
 
     // Multiples of 10.
-    public static final String[] MULTIPLES_OF_10 = { "", "", "twenty", "thirty",
-            "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+    public static final String[] MULTIPLES_OF_10 = {"", "", "twenty", "thirty",
+            "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
     // Error message to be shown to the user.
     public static final String ERROR_NUMBER_MESSAGE = "The input number exceed allowed value or is not a Number.";
@@ -47,5 +48,5 @@ public class Constants {
 
 
     // Error message to be shown to the user.
-    public static final String NEGATIVE_NUMBER= "negative";
+    public static final String NEGATIVE_NUMBER = "negative";
 }
