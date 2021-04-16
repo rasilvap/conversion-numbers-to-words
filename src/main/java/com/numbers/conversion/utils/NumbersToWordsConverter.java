@@ -209,11 +209,11 @@ public class NumbersToWordsConverter {
         final int units = number - tens * 10;
 
         if (number < 20) {
-            return NUMBERS_UP_TO_19[Math.abs(number)];
+            return NUMBERS_UP_TO_19[number];
         } else if (units == 0) {
-            return MULTIPLES_OF_10[Math.abs(tens)];
+            return MULTIPLES_OF_10[tens];
         } else {
-            return MULTIPLES_OF_10[Math.abs(tens)] + SEPARATOR + NUMBERS_UP_TO_19[Math.abs(units)];
+            return MULTIPLES_OF_10[tens] + SEPARATOR + NUMBERS_UP_TO_19[Math.abs(units)];
         }
     }
 
