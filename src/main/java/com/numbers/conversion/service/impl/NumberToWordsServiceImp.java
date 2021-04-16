@@ -8,8 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
-
 /**
  * NumberToWordsServic Service class.
  * @author Rodolfo Silva.
@@ -18,7 +16,7 @@ import java.math.BigInteger;
 @Service
 public class NumberToWordsServiceImp implements NumbersToWordsService {
 
-    private static Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
+    private final static Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
 
     /**
      * This method starts with the conversion flow invoking the convertNumberToWords method.

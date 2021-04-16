@@ -2,8 +2,6 @@ package com.numbers.conversion.model.dto;
 
 import lombok.Getter;
 
-import java.util.Objects;
-
 /**
  * This class receives the request object from outside.
  */

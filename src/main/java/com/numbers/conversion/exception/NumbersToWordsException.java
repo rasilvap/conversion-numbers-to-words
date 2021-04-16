@@ -2,7 +2,7 @@ package com.numbers.conversion.exception;
 
 /**
  *The class NumbersToWordsException is a custom exception that indicates conditions that a reasonable
- * application might want to catch with parametrizable error messages.
+ * application might want to catch with parameterizable error messages.
  *  *
  */
 public class NumbersToWordsException extends Exception {

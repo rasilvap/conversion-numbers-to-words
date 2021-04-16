@@ -11,8 +11,8 @@ import static com.numbers.conversion.utils.WordsConversion.capitalizeAndFormatFi
  */
 public class NumbersToWordsConverter {
     private final long number;
-    private StringBuffer result = new StringBuffer();
-    static Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
+    private final StringBuffer result = new StringBuffer();
+    static final Logger logger = LogManager.getLogger(NumbersToWordsConverter.class);
     static boolean isNegativeNumber;
 
     /**
@@ -45,18 +45,18 @@ public class NumbersToWordsConverter {
         long remainder;
         final long quintillion = number / UNIT_MAPPER_QUINTILLION;
         remainder = number % UNIT_MAPPER_QUINTILLION;
-        final Long quadrillion = remainder / UNIT_MAPPER_QUADRILLION;
+        final long quadrillion = remainder / UNIT_MAPPER_QUADRILLION;
         remainder = number % UNIT_MAPPER_QUADRILLION;
-        final Long trillions = remainder / UNIT_MAPPER_TRILLION;
+        final long trillions = remainder / UNIT_MAPPER_TRILLION;
         remainder = number % UNIT_MAPPER_TRILLION;
-        final Long billions = remainder / UNIT_MAPPER_BILLION;
+        final long billions = remainder / UNIT_MAPPER_BILLION;
         remainder = number % UNIT_MAPPER_BILLION;
         final long millions = remainder / UNIT_MAPPER_MILLION;
         remainder = number % UNIT_MAPPER_MILLION;
-        final Long thousands = remainder / UNIT_MAPPER_THOUSAND;
+        final long thousands = remainder / UNIT_MAPPER_THOUSAND;
         remainder = number % UNIT_MAPPER_THOUSAND;
-        final Long hundreds = remainder / UNIT_MAPPER_HUNDRED;
-        final Long tensAndUnits = remainder % UNIT_MAPPER_HUNDRED;
+        final long hundreds = remainder / UNIT_MAPPER_HUNDRED;
+        final long tensAndUnits = remainder % UNIT_MAPPER_HUNDRED;
 
         appendQuintillion(getAbsoluteValue(quintillion));
         appendQuadrillion(getAbsoluteValue(quadrillion));
@@ -217,6 +217,11 @@ public class NumbersToWordsConverter {
         }
     }
 
+    /**
+     * This method gets the positive number of the unit mapper.
+     * @param result the unit mapper result to be converted to positive
+     * @return
+     */
     private long getAbsoluteValue(long result){
         return Math.abs(result);
     }
