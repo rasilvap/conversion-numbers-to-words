@@ -3,8 +3,6 @@ package com.numbers.conversion.utils;
 import com.numbers.conversion.exception.NumbersToWordsException;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigInteger;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumbersToWordsConverterTest {
@@ -207,6 +205,6 @@ class NumbersToWordsConverterTest {
 
 
     private void expectConversion(final Long number, final String expectedWords) throws NumbersToWordsException {
-        assertEquals(expectedWords, NumbersToWordsConverter.convertNumberToWords(new BigInteger(number.toString())));
+        assertEquals(expectedWords, NumbersToWordsConverter.convertNumberToWords(number));
     }
 }

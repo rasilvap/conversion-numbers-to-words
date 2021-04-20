@@ -20,7 +20,7 @@ public class NumbersToWordsController {
 	public static final String NUMBERS = "/numbers-words/{number}";
 
 	private final NumbersToWordsService numbersToWordsService;
-	static Logger logger = LogManager.getLogger(NumbersToWordsController.class);
+	static final Logger logger = LogManager.getLogger(NumbersToWordsController.class);
 
 	@Autowired
 	public NumbersToWordsController(NumbersToWordsService numbersToWordsService) {
