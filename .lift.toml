@@ -2,6 +2,22 @@ jdk11 = true
 
 disableTools = [ "detekt", "eslint" ]
 
-
 ignoreFiles = """
 """
+
+#!/usr/bin/env bash
+# dir=$1 but it is not needed
+commit=$2
+cmd=$3 
+
+# ... to be filled in ... 
+
+if [[ "$cmd" = "run" ]] ; then 
+  run 
+fi 
+if [[ "$cmd" = "applicable" ]] ; then 
+  applicable 
+fi 
+if [[ "$cmd" = "version" ]] ; then 
+  version 
+fi
