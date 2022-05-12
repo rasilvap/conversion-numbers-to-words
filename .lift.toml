@@ -2,5 +2,6 @@ jdk11 = true
 
 disableTools = [ "detekt", "eslint" ]
 
+
 ignoreFiles = """
 """
