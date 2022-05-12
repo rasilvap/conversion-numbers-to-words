@@ -1,0 +1,10 @@
+jdk11 = true
+
+disableTools = [ "detekt", "eslint" ]
+
+ignoreFiles = """
+**/funTest/assets/
+**/funTest/resources/
+**/test/assets/
+**/test/resources/
+"""
